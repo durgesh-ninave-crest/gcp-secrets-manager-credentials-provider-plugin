@@ -39,7 +39,7 @@ public class CredentialsFactoryTest {
         };
 
     Optional<StandardCredentials> credential =
-        CredentialsFactory.create("foo", "project", labels, mockSecretGetter);
+        CredentialsFactory.create("foo", "project", "location", labels, mockSecretGetter);
 
     assertThat(credential).isNotEmpty();
     assertThat(credential.get()).isInstanceOf(GcpStringCredentials.class);
@@ -72,7 +72,7 @@ public class CredentialsFactoryTest {
         };
 
     Optional<StandardCredentials> credential =
-        CredentialsFactory.create("foo", "project", labels, mockSecretGetter);
+        CredentialsFactory.create("foo", "project", "location", labels, mockSecretGetter);
 
     assertThat(credential).isNotEmpty();
     assertThat(credential.get()).isInstanceOf(GcpFileCredentials.class);
@@ -116,7 +116,7 @@ public class CredentialsFactoryTest {
         };
 
     Optional<StandardCredentials> credential =
-        CredentialsFactory.create("foo", "project", labels, mockSecretGetter);
+        CredentialsFactory.create("foo", "project", "location", labels, mockSecretGetter);
 
     assertThat(credential).isNotEmpty();
     assertThat(credential.get()).isInstanceOf(GcpUsernamePasswordCredentials.class);
@@ -190,7 +190,7 @@ public class CredentialsFactoryTest {
         };
 
     Optional<StandardCredentials> credential =
-        CredentialsFactory.create("foo", "project", labels, mockSecretGetter);
+        CredentialsFactory.create("foo", "project", "location", labels, mockSecretGetter);
 
     assertThat(credential).isNotEmpty();
     assertThat(credential.get()).isInstanceOf(GcpSshUserPrivateKey.class);
@@ -225,7 +225,7 @@ public class CredentialsFactoryTest {
         };
 
     Optional<StandardCredentials> credential =
-        CredentialsFactory.create("foo", "project", labels, mockSecretGetter);
+        CredentialsFactory.create("foo", "project", "location", labels, mockSecretGetter);
 
     assertThat(credential).isNotEmpty();
     assertThat(credential.get()).isInstanceOf(GcpCertificateCredentials.class);

@@ -15,8 +15,8 @@ public class CredentialsFactory {
   private static final Logger LOGGER = Logger.getLogger(CredentialsFactory.class.getName());
 
   public static Optional<StandardCredentials> create(
-      String name, String project, Map<String, String> labels, SecretGetter secretGetter) {
-    final String description = name + " (" + project + ")";
+      String name, String project, String location, Map<String, String> labels, SecretGetter secretGetter) {
+    final String description = name + " (" + project + "," + location + ")";
     final String type = labels.getOrDefault(Labels.TYPE, "");
 
     LOGGER.log(Level.FINE, "Checking GCP secret: " + name);
