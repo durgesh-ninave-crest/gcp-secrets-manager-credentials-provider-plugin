@@ -12,6 +12,7 @@ import io.jenkins.plugins.credentials.gcp.secretsmanager.config.Filter;
 import io.jenkins.plugins.credentials.gcp.secretsmanager.config.Messages;
 import io.jenkins.plugins.credentials.gcp.secretsmanager.config.PluginConfiguration;
 import io.jenkins.plugins.credentials.gcp.secretsmanager.config.ServerSideFilter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -133,8 +134,13 @@ public class CredentialsSupplier implements Supplier<Collection<StandardCredenti
             final String secretName = secret.getName();
             final String name = secretName.substring(secretName.lastIndexOf("/") + 1);
             final Map<String, String> labels = secret.getLabelsMap();
-            CredentialsFactory.create(name, projectId, locationId, labels, new GcpSecretGetter(projectId, locationId))
-                .ifPresent(credentials::add);
+
+            if (locationId.equals("global")) {
+              CredentialsFactory.create(name, projectId, labels, new GcpSecretGetter(projectId, locationId)).ifPresent(credentials::add);
+            } else {
+              CredentialsFactory.create(name, projectId, locationId, labels, new GcpSecretGetter(projectId, locationId))
+                  .ifPresent(credentials::add);
+            }
           }
         }
       }
